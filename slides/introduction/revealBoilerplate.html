@@ -1,0 +1,33 @@
+<section data-markdown>
+<textarea data-template>
+Die index.html enthält diese Slides in Form von HTML und den technologischen Aufbau, um reveal.js zu
+nutzen.
+
+---
+
+Die Metadaten beinhalten den Stil der Slides und den Titel.
+
+    <head>
+        <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+        <link rel="stylesheet" href="reveal.js/dist/theme/white.css">
+        <title>way-to-todo-backend</title>
+    </head>
+
+---
+
+Der Body enthält die Slides und die Skripte, die reveal.js benötigt.
+
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>Slide 1</section>
+                <section>Slide 2</section>
+            </div>
+        </div>
+        <script src="reveal.js/dist/reveal.js"></script>
+        <script>
+            Reveal.initialize();
+        </script>
+    </body>
+</textarea>
+</section>
