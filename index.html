@@ -4,6 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="reveal.js/dist/reveal.css">
     <link rel="stylesheet" href="reveal.js/dist/theme/white.css">
+    <!--    <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css">-->
     <title>way-to-todo-backend</title>
 </head>
 <body>
@@ -11,18 +12,54 @@
     <div class="slides">
         <section>
             <section>
+                <img src="ressources/reply_fincon.png" alt="fincon reply logo">
                 <h2>0. Vorbereitung</h2><br>
                 Wie diese Slides entstehen
             </section>
             <section>
-                Diese Slides werden mithilfe von reveal.js und GitHub-Pages dargestellt.
+                Diese Slides werden mithilfe von reveal.js und GitHub-Pages dargestellt.<br>
+                <img src="https://revealjs.com/images/logo/reveal-black-text.svg" alt="reveal.js logo">
             </section>
             <section>
                 reveal.js ist eine Bibliothek, die es ermöglicht Slides wie diese in HTML oder Markdown zu schreiben.
             </section>
             <section>
                 Dazu wurde ein neues Repository in GitHub angelegt.
-                Die index.html enthält diese Slides in Form von HTML und den technologischen Aufbau, um reveal.js zu nutzen.
+                Die Pages-Funktion wird aktiviert, indem ein Branch und Ordner in den Einstellungen ausgewählt werden.
+            </section>
+            <section data-markdown>
+<textarea data-template>
+Die index.html enthält diese Slides in Form von HTML und den technologischen Aufbau, um reveal.js zu
+nutzen.
+
+---
+
+Die Metadaten beinhalten den Stil der Slides und den Titel.
+
+    <head>
+        <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+        <link rel="stylesheet" href="reveal.js/dist/theme/white.css">
+        <title>way-to-todo-backend</title>
+    </head>
+
+---
+
+Der Body enthält die Slides und die Skripte, die reveal.js benötigt.
+
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>Slide 1</section>
+                <section>Slide 2</section>
+            </div>
+        </div>
+        <script src="reveal.js/dist/reveal.js"></script>
+        <script>
+            Reveal.initialize();
+        </script>
+    </body>
+</textarea>
+
             </section>
         </section>
         <section>
@@ -33,8 +70,12 @@
     </div>
 </div>
 <script src="reveal.js/dist/reveal.js"></script>
+<script src="reveal.js/plugin/highlight/highlight.js"></script>
+<script src="reveal.js/plugin/markdown/markdown.js"></script>
 <script>
-    Reveal.initialize();
+    Reveal.initialize({
+        plugins: [RevealHighlight, RevealMarkdown]
+    });
 </script>
 </body>
 
