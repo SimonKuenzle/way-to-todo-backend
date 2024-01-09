@@ -1,0 +1,10 @@
+.reveal .slides section, .reveal .slides section > section > .mermaid {
+    line-height: 1;
+}
+
+svg[id^="mermaid-"] {
+    min-width: 50%;
+    max-width: 100%;
+    min-height: 50vh;
+    max-height: 80vh;
+}

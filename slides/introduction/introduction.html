@@ -2,18 +2,32 @@
     <section>
         <img src="./resources/reply_fincon.png" alt="fincon reply logo">
         <h2>0. Vorbereitung</h2><br>
-        Wie diese Slides entstehen
+        Die Entstehung dieser Slides
     </section>
     <section>
         Diese Slides werden mithilfe von reveal.js und GitHub-Pages dargestellt.<br>
         <img src="https://revealjs.com/images/logo/reveal-black-text.svg" alt="reveal.js logo">
     </section>
     <section>
-        reveal.js ist eine Bibliothek, die es ermöglicht Slides wie diese in HTML oder Markdown zu schreiben.
+        <div class="mermaid" id="mermaid-example">
+            <pre>
+              graph TD
+                A[reveal.js] -->|Slides in HTML oder Markdown| G[Github Repository]
+                G -->|Pages-Funktion| B[Browser]
+                B -->|Slides werden dargestellt| C[Benutzer]
+            </pre>
+        </div>
     </section>
     <section>
-        Dazu wurde ein neues Repository in GitHub angelegt.
-        Die Pages-Funktion wird aktiviert, indem ein Branch und Ordner in den Einstellungen ausgewählt werden.
+        Die Pages-Funktion muss aktiviert werden.<br>
+        Dazu wird unter Einstellungen > Pages Branch und Ordner ausgewählt, die genutzt werden sollen.
     </section>
     <section data-external-replace="./revealBoilerplate.html"></section>
+    <section>
+        Für die verbesserte Übersicht der Slides im Quellcode wird ein Plugin[<a href="https://github.com/janschoepke/reveal_external">reveal_external</a>] verwendet, das die Auslagerung von
+        HTML in Dateien ermöglicht.
+    </section>
+    <section>
+        Auch für die Darstellung von Mermaid-Diagrammen wie <a href="#/mermaid-example">hier</a> bereits verwendet wurde und das Einbinden von Markdown werden Plugins verwendet.
+    </section>
 </section>

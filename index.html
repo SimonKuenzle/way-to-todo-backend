@@ -4,11 +4,13 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="reveal.js/dist/reveal.css">
     <link rel="stylesheet" href="reveal.js/dist/theme/white.css">
+    <link rel="stylesheet" href="custom.css">
     <title>way-to-todo-backend</title>
 </head>
 <body>
 <div class="reveal">
     <div class="slides">
+        <section data-external-replace="slides/title/title.html"></section>
         <section data-external-replace="slides/introduction/introduction.html"></section>
         <section data-external-replace="slides/APIDesign/apiDesign.html"></section>
     </div>
@@ -16,11 +18,20 @@
 <script src="reveal.js/dist/reveal.js"></script>
 <script src="reveal.js/plugin/highlight/highlight.js"></script>
 <script src="reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@2.1.0/plugin/mermaid/mermaid.js"></script>
 <script>
     Reveal.initialize({
+        history: true,
+        mermaid: {
+            // flowchart: {
+            //   curve: 'linear',
+            // },
+        },
         plugins: [
             RevealHighlight,
-            RevealMarkdown],
+            RevealMarkdown,
+            RevealMermaid
+        ],
         dependencies: [
             {
                 src: 'reveal_external/external/external.js',
