@@ -3,4 +3,61 @@
         <img src="./resources/reply_fincon.png" alt="fincon reply logo">
         <h2>1. API Design mit OpenAPI</h2><br>
     </section>
+    <section>
+        Die OpenAPI (vormals Swagger) Spezifikation ist ein Standard zur Beschreibung von REST-APIs.<br>
+        OpenAPI Initiative (OAI) als Teil der Linux Foundation ist für die Weiterentwicklung der Spezifikation
+        zuständig.<br>
+        <img src="https://www.openapis.org/wp-content/uploads/sites/3/2018/02/OpenAPI_Logo_Pantone-1.png"
+             alt="OAI logo">
+    </section>
+    <section>
+        Mit Hilfe des openapi-generators können aus einer OpenAPI-Spezifikation Code-Snippets generiert werden.
+    </section>
+    <section>
+        In Projekten, die mit Maven gebaut werden, kann der openapi-generator als Plugin eingebunden werden.<br>
+        Dieses Plugin heißt openapi-generator-maven-plugin.
+    </section>
+    <section data-external-replace="./pomFileSpecifications.html"></section>
+    <section>
+        Die api.yml enthält die OpenAPI-Spezifikation.<br>
+        Diese besteht aus Metadaten, wie z.B. dem Titel der API, und der Beschreibung der Endpunkte.<br>
+        Um die Endpunkte beschreiben zu können, werden zusätzlich die Objekte beschrieben, mit denen die API arbeitet.
+
+        <pre><code>
+           paths:
+              /todos:
+                get:
+                  summary: List all todos
+                  operationId: listTodos
+                  tags:
+                    - todos
+                  responses:
+                    '200':
+                      description: A list of todos.
+                      content:
+                        application/json:
+                          schema:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Todo'
+        </code></pre>
+
+        <pre><code>
+            components:
+              schemas:
+                Todo:
+                  type: object
+                  required:
+                    - id
+                    - content
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                    content:
+                      type: string
+                    tag:
+                      type: string
+        </code></pre>
+    </section>
 </section>

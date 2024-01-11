@@ -1,0 +1,72 @@
+<section data-markdown>
+<textarea data-template>
+
+Dazu wird in der pom.xml das Plugin konfiguriert, wodurch bei dem Befehl 'mvn install' der openapi-generator ausgeführt wird.
+
+    <plugin>
+        <groupId>org.openapitools</groupId>
+        <artifactId>openapi-generator-maven-plugin</artifactId>
+        <version>7.2.0</version>
+        <executions>
+            <execution>
+                <goals>
+                    <goal>generate</goal>
+                </goals>
+                <configuration>
+                    ...
+                </configuration>
+            </execution>
+        </executions>
+    </plugin>
+
+---
+
+In der Konfiguration des Plugins wird der Pfad zur OpenAPI-Spezifikation, in diesem Fall die api.yml, angegeben.
+
+    <configuration>
+        <inputSpec>${project.basedir}/src/main/resources/api.yml</inputSpec>
+        ...
+    </configuration>
+
+
+---
+
+Über den generatorName erkennt der openapi-generator, welche Sprache generiert werden soll.
+    Für Spring Boot Anwendungen ist das 'spring'.
+Im Fall von Spring Boot der Major-Version 3 wird eine zusätzliche Konfiguration benötigt.
+
+
+    <configuration>
+        <generatorName>spring</generatorName>
+        <configOptions>
+            <useSpringBoot3>true</useSpringBoot3>
+            ...
+        </configOptions>
+        ...
+    </configuration>
+
+---
+
+Damit der Generator die Dateien in das richtige Package generiert, sollte die Package-Struktur angegeben werden,
+    die auch für manuell erstellen Quellcode genutzt werden soll.
+
+    <configuration>
+        <apiPackage>com.github.service.controller</apiPackage>
+        <modelPackage>com.github.service.model</modelPackage>
+        ...
+    </configuration>
+
+---
+
+Optional kann das delegatePattern aktiviert werden, was dazu führt, dass ohne weitere Implementierung standardmäßig
+    der Statuscode 501 (Not Implemented) zurückgegeben wird. Auch dienen die Delegates als Interface der Service-Klassen.
+
+    <configuration>
+        <configOptions>
+            <delegatePattern>true</delegatePattern>
+            ...
+        </configOptions>
+        ...
+    </configuration>
+</textarea>
+</section>
