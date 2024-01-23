@@ -22,6 +22,9 @@
         Die api.yml enthält die OpenAPI-Spezifikation.<br>
         Diese besteht aus Metadaten, wie z.B. dem Titel der API, und der Beschreibung der Endpunkte.<br>
         Um die Endpunkte beschreiben zu können, werden zusätzlich die Objekte beschrieben, mit denen die API arbeitet.
+    </section>
+    <section>
+        Die Definition der Endpunkte erfolgt in der api.yml im paths-Block.<br>
 
         <pre><code>
            paths:
@@ -41,6 +44,10 @@
                             items:
                               $ref: '#/components/schemas/Todo'
         </code></pre>
+    </section>
+    <section>
+
+        Die Definition der Objekte erfolgt in der api.yml im components-Block.<br>
 
         <pre><code>
             components:
@@ -60,4 +67,6 @@
                       type: string
         </code></pre>
     </section>
+    <section data-external-replace="./generationResult.html"></section>
+    <section data-external-replace="./testing.html"></section>
 </section>

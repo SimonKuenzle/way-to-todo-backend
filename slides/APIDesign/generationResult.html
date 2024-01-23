@@ -1,0 +1,28 @@
+<section>
+    Nach dem Generieren, erscheinen mehrere Dateien im target-Ordner. Die wichtigsten sind:<br>
+    <ul>
+        <li>Todo.java</li>
+        <li>TodosApi.java</li>
+    </ul>
+</section>
+<section>
+    Die Todo.java enthält die Definition des Todo-Objekts.<br>
+    Sie wird von der TodosApi.java verwendet und kann auch in eigenen Java-Klassen importiert werden.<br>
+    Es sollte beim ersten Verwenden des Quellcodes darauf geachtet werden, dass der Generator gestartet wurde,
+    damit die Dateien überhaupt existieren.
+    Auch sollte mit dem Befehl <em>mvn clean</em> sichergestellt werden, dass die Dateien neu generiert werden,
+    nachdem die api.yml angepasst wurde.
+</section>
+<section>
+    Die TodosApi.java ist ein Java-Interface und enthält die Definition der Endpunkte.<br>
+    Über das default-Schlüsselwort definiert das Interface die Standard-Implementierung mit dem Rückgabewert 501, not implemented.<br>
+    Das Interface wird anschließend von einer Klasse implementiert, welche wieder manuell geschrieben werden muss,
+    dem TodosController.
+</section>
+<section>
+    Der TodosController ist eine Spring Boot Controller-Klasse, die die TodosApi implementiert.<br>
+    Dies erfolgt, indem die Methoden der TodosApi im Controller implementiert werden.<br>
+    Controller-Klassen bilden die Schnittstelle zwischen der API und der Business-Logik.<br>
+    Sie validieren die Parameter und Payloads und rufen die entsprechenden Methoden der Business-Logik auf.<br>
+    Je nach Ergebnis der Validierung und Business-Logik wird ein HTTP-Statuscode und ein Payload zurückgegeben.<br>
+</section>

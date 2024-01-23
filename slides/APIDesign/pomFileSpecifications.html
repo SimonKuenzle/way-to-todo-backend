@@ -58,12 +58,13 @@ Damit der Generator die Dateien in das richtige Package generiert, sollte die Pa
 
 ---
 
-Optional kann das delegatePattern aktiviert werden, was dazu führt, dass ohne weitere Implementierung standardmäßig
-    der Statuscode 501 (Not Implemented) zurückgegeben wird. Auch dienen die Delegates als Interface der Service-Klassen.
+Um nur die Schnittstellen zu generieren, kann die Option 'interfaceOnly' auf 'true' gesetzt werden.
+    Das ist im Fall von Spring Boot sinnvoll, da es sonst einen Konflikt bei der Suche der richtigen Beans gibt, wenn
+    die dependencies der Beans injected werden.
 
     <configuration>
         <configOptions>
-            <delegatePattern>true</delegatePattern>
+            <interfaceOnly>true</interfaceOnly>
             ...
         </configOptions>
         ...

@@ -1,0 +1,80 @@
+<section>
+    Controller in Spring Boot sollten getestet werden, um (Flüchtigkeits-)Fehler zu vermeiden und Veränderungen des
+    Verhaltens
+    der Anwendung durch Refactoring, Bugfixes, etc. zu erkennen und bewerten zu können.
+</section>
+<section>
+    Für die Tests der Controller bietet das Spring Boot Framework bereits mehrere Testbibliotheken an.
+    <ul>
+        <li>Junit 5</li>
+        <li>Mockito</li>
+        <li>MockMvc</li>
+        <li>assertJ</li>
+    </ul>
+</section>
+<section>
+    <h3>JUnit 5</h3>
+    <p>
+        JUnit 5 ist ein leistungsstarkes Testframework für Java-Anwendungen.
+        Es bietet Annotationen und Assert-Methoden für effektive Unit- und Integrationstests.
+    </p>
+</section>
+
+<section>
+    <h3>Mockito</h3>
+    <p>
+        Mockito ist eine Mocking-Bibliothek, die das Erstellen und Verwalten von Mock-Objekten erleichtert.
+        Mit Mockito können Sie Mocks für Abhängigkeiten erstellen und ihre Interaktionen während Tests überwachen.
+    </p>
+</section>
+
+<section>
+    <h3>MockMvc</h3>
+    <p>
+        MockMvc ist eine Komponente des Spring Test Frameworks und ermöglicht das Testen von Spring MVC-Anwendungen.
+        Es erlaubt Ihnen, HTTP-Anfragen an Ihre Controller zu senden und die resultierenden Antworten zu überprüfen.
+    </p>
+</section>
+
+<section>
+    <h3>AssertJ</h3>
+    <p>
+        AssertJ ist eine Bibliothek für Fluent Assertions in Java.
+        Sie bietet eine klare und ausdrucksstarke Syntax für das Überprüfen von Bedingungen in Ihren Tests.
+        AssertJ kann gut mit JUnit und anderen Testframeworks integriert werden.
+    </p>
+</section>
+<section>
+    Eine Testklasse für einen Controller könnte wie folgt aussehen:
+    <pre><code>
+        @ExtendWith(SpringExtension.class)
+        @WebMvcTest(TodosController.class)
+        public class TodosControllerIntegrationTest {
+            @Autowired
+            private MockMvc mvc;
+
+            @MockBean
+            private TodosService service;
+
+            // Test methods
+        }
+    </code></pre>
+</section>
+<section>
+    Ein Testfall könnte wie folgt aussehen:
+    <pre><code>
+        @Test
+        public void getTodoByIdTest() throws Exception {
+
+            given(service.getTodoById(1L)).willReturn(Optional.of(todo));
+
+            mvc.perform(get("/todos/1")
+                            .contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$.content", is(todo.getContent())));
+
+            // The service should only be called once
+            verify(service, times(1)).getTodoById(1L);
+        }
+    </code></pre>
+</section>
