@@ -1,0 +1,102 @@
+<section>
+    <section>
+        <img src="./resources/reply_fincon.png" alt="fincon reply logo">
+        <h2>2. Persistenzschicht</h2><br>
+        Domänenmodell, Datenbank und Service-Layer
+    </section>
+    <section>
+        <h2>Domänenmodell</h2>
+        Das Domänenmodell ist die Grundlage für die Persistenzschicht. Es beschreibt die Struktur der Daten, die in der
+        Datenbank gespeichert werden sollen.
+    </section>
+    <section>
+         <pre><code>@Entity
+public class Todo {
+    @Id @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
+    @NotNull
+    private String content;
+}</code></pre>
+        Eine Spring Boot Domänenklasse wird mit @Entity markiert und muss ein @Id-Feld enthalten, welches als
+        Primärschlüssel der Tabelle verwendet wird.<br>
+        Weitere Constraints, wie sie aus SQL bekannt sind können an Felder ergänzt werden, wie z.B. @NotNull.
+    </section>
+    <section>
+        <h2>Datenbank</h2>
+        Die Datenbank wird in der application.properties konfiguriert. <br>
+        Hier wurde eine H2-Datenbank in-memory konfiguriert.
+        <pre>spring: datasource: url: jdbc:h2:mem:mdb</pre>
+        <br>
+        Mit
+        <pre>spring: jpa: hibernate: ddl-auto: create</pre>
+        wird die Datenbank mit ihrer Struktur bei jedem Start der Anwendung neu erstellt.
+    </section>
+    <section>
+        Über
+        <pre>spring: sql: init: data-locations: classpath:data.sql</pre>
+        wird eine SQL-Datei beim Start der Anwendung ausgeführt, um Testdaten anzulegen.
+    </section>
+    <section>
+        <h2>Datenzugriff</h2>
+        Der Datenzugriff wird in Spring Boot mit dem JpaRepository realisiert. <br>
+        <pre><code>
+public interface TodoRepository extends JpaRepository < Todo, String > {}
+        </code></pre>
+        Das JpaRepository bietet Methoden zum Speichern, Löschen und Suchen von Entitäten, die vom Service genutzt
+        werden dürfen.
+    </section>
+    <section>
+        <h2>Service-Layer</h2>
+        Der Service-Layer ist die Schnittstelle zwischen der Datenbank und dem Controller. <br>
+        In diesem Fall enthält der Service nur die CRUD-Methoden, die vom Controller aufgerufen werden. <br>
+        Wenn Business-Logik benötigt wird, sollte diese im Service implementiert werden.
+    </section>
+    <section>
+        <h2>Controller-Service-Kommunikation</h2>
+        Der Controller verwendet DTOs, um die Schnittstelle zu definieren. Diese wurden generiert.<br>
+        Der Service verwendet jedoch das Domänenmodell. <br>
+        Das Domänenmodell muss also in DTOs umgewandelt werden und umgekehrt. <br>
+    </section>
+    <section>
+        Mit Hilfe der Modelmapper-Bibliothek können Objekte einfach in andere Objekte umgewandelt werden, besonders wenn
+        diese sich sehr ähnlich sind. <br>
+        Diese Umwandlung wird im Controller durchgeführt, da DTOs als Teil der Schnittstelle nicht in den Kontext der
+        Business-Logik gehören. <br>
+        Damit ist sichergestellt, dass die Business-Logik nicht von der Schnittstelle abhängig ist und die Schnittstelle
+        damit austauschbar ist.
+    </section>
+    <section>
+        <h2>Insecure Direct Object Reference Prevention</h2>
+        Insecure Direct Object References (IDOR) sind eine Art von Sicherheitslücke, bei der ein Angreifer auf Daten
+        zugreift, indem er die Referenz auf ein Objekt errät. <br>
+        Auch wenn in diesem Projekt noch keine Security-Maßnahmen implementiert wurden, sollen die Empfehlungen von
+        OWASP befolgt werden. <br>
+        In diesem Fall bedeutet das, dass IDs nicht erratbar sein dürfen.
+        Daher werden UUIDs als IDs verwendet, anstelle von fortlaufenden Zahlen.
+    </section>
+    <section>
+        <h2>Unit-Tests</h2>
+        Für den Service sollten Unit-Tests geschrieben werden, um die Funktionalität zu überprüfen. <br>
+        Auch Integrationstests, die die Datenbank einbeziehen, könnten hier verwendet werden. Diese sind jedoch weniger
+        performant und sollten daher sparsam eingesetzt werden.
+    </section>
+    <section>
+        Ein Unit-Test könnte wie folgt aussehen:
+        <pre><code>@ExtendWith(MockitoExtension.class)
+class TodoServiceTest {
+    @InjectMocks
+    private TodoService todoService;
+    @Mock
+    private TodoRepository todoRepository;
+
+    @Test
+    void createTodo() {
+        Todo todo = new Todo();
+        todo.setContent("Test");
+        when(todoRepository.save(todo)).thenReturn(todo);
+        Todo createdTodo = todoService.create(todo);
+        assertEquals(todo, createdTodo);
+    }
+}</code></pre>
+    </section>
+</section>
