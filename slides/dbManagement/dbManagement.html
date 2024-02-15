@@ -1,0 +1,32 @@
+<section>
+    <section>
+        <img src="./resources/reply_fincon.png" alt="fincon reply logo">
+        <h2>2. DB-Management</h2><br>
+        Liquibase
+    </section>
+    <section>
+        <h2>Was ist Liquibase?</h2>
+        Liquibase ist ein Tool zur Versionsverwaltung von Datenbanken. Es ermöglicht das Erstellen, Verwalten und
+        Anwenden von Änderungen an Datenbanken.
+    </section>
+    <section>
+        <h3>Changesets</h3>
+        <p>
+            Änderungen an der Datenbank werden in sogenannten Changesets definiert. Ein Changeset ist eine XML-Datei,
+            die
+            eine oder mehrere Änderungen an der Datenbank beschreibt. Ein Changeset kann beispielsweise eine neue
+            Tabelle
+            erstellen, eine Spalte hinzufügen oder einen Index erstellen.
+        </p>
+    </section>
+    <section data-external-replace="./changeset.html"></section>
+    <section>
+        Über einen Context kann festgelegt werden, in welcher Umgebung ein Changeset angewendet werden soll. <br>
+        Dies wird genutzt, um Demo bzw. Testdaten nur dann zu erstellen, wenn die Anwendung im dev-Profil gestartet
+        wird.
+    </section>
+    <section>
+        Über den Lock-Mechanismus erkennt Liquibase, ob die Datenbank bereits aktualisiert wurde. <br>
+        Dafür werden in der Datenbank Tabellen angelegt, die den Status der Datenbank beinhalten.
+    </section>
+</section>

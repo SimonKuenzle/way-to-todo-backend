@@ -1,0 +1,16 @@
+<section data-markdown>
+<textarea data-template>
+Beispiel für ein Changeset
+
+    <changeSet author="simon" id="init">
+        <createTable tableName="TODO">
+            <column name="CONTENT" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ID" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TODO"/>
+            </column>
+        </createTable>
+    </changeSet>
+</textarea>
+</section>
